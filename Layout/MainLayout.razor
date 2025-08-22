@@ -23,11 +23,15 @@
         <a href="/contact" @onclick="CloseDrawer">Contact</a>
     </div>
 
-    <main>
+    <main class="main-content">
         <article class="content px-4">
             @Body
         </article>
     </main>
+
+    <footer class="footer-neon">
+        <span>&copy; @DateTime.Now.Year Chris Doe &mdash; ResumeSite</span>
+    </footer>
 </div>
 
 @code {
