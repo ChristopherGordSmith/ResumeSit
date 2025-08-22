@@ -2,6 +2,68 @@
 
 <PageTitle>Projects</PageTitle>
 
-<h1>Projects</h1>
+<h1 class="projects-title">Projects</h1>
 
-<!-- Projects content will be rendered here using a Razor component -->
+<div class="project-cards">
+    <div class="project-card neon-card">
+        <div class="project-card-header">Configuration Control System</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                Internal ASP.NET Core API for tracking configuration changes across systems. Supports audited versioning, allows querying differences between revisions, and enables retrieval of historical configurations for any product. Integrates with SQL Server and empowers the company to build any version of a product, not just the latest.
+            </div>
+            <div class="project-card-tags">
+                <span class="project-tag">ASP.NET Core</span>
+                <span class="project-tag">SQL Server</span>
+                <span class="project-tag">Versioning</span>
+                <span class="project-tag">Audit Logging</span>
+            </div>
+        </div>
+    </div>
+    <div class="project-card neon-card">
+        <div class="project-card-header">Help Desk</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                Internal ASP.NET Core MVC ticketing platform for DevOps and Facilities teams. Replaces third-party tools with a custom solution integrating Active Directory and email. Features role-based dashboards for requesters and responders, supports attachments and CC’d users, and displays ticket assignments and status. Built with Telerik components to streamline internal support workflows.
+            </div>
+            <div class="project-card-tags">
+                <span class="project-tag">ASP.NET Core</span>
+                <span class="project-tag">Telerik</span>
+                <span class="project-tag">Active Directory</span>
+                <span class="project-tag">Email Integration</span>
+                <span class="project-tag">Internal Tools</span>
+            </div>
+        </div>
+    </div>
+    <div class="project-card neon-card">
+        <div class="project-card-header">WIP Map</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                Blazor-based visualization tool that maps the production floor in real time. Uses Blazor interop, Bootstrap, and SignalR to provide a drag-and-drop canvas where administrators can place jobs and track progress dynamically. The system adapts to layout changes and offers high-visibility insights into work-in-progress across designated locations.
+            </div>
+            <div class="project-card-tags">
+                <span class="project-tag">Blazor</span>
+                <span class="project-tag">SignalR</span>
+                <span class="project-tag">Bootstrap</span>
+                <span class="project-tag">Real-Time</span>
+                <span class="project-tag">Production Visualization</span>
+            </div>
+        </div>
+    </div>
+    <div class="project-card neon-card">
+        <div class="project-card-header">Wire Operations</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                ASP.NET Core MVC web app that streamlines wire-harness manufacturing workflows. Pulls data from multiple SQL tables to validate inputs and determine laser-marking requirements, which are generated dynamically based on the program. The app guides technicians through each step of the assembly process with a responsive UI, reducing layout errors and improving production accuracy.
+            </div>
+            <div class="project-card-tags">
+                <span class="project-tag">ASP.NET Core</span>
+                <span class="project-tag">SQL Server</span>
+                <span class="project-tag">Manufacturing</span>
+                <span class="project-tag">Dynamic Marking</span>
+                <span class="project-tag">Workflow Automation</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- More project cards can be added here -->
