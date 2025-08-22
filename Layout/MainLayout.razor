@@ -1,16 +1,38 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+@inject NavigationManager NavManager
+
+<div class="main-navbar-layout">
+    <nav class="top-nav">
+        <div class="nav-left">ResumeSite</div>
+        <div class="nav-right">
+            <a href="/">Home</a>
+            <a href="/resume">Resume</a>
+            <a href="/projects">Projects</a>
+            <a href="/experience">Experience</a>
+            <a href="/contact">Contact</a>
+            <button class="hamburger" @onclick="ToggleDrawer">☰</button>
+        </div>
+    </nav>
+
+    <div class="backdrop" @onclick="CloseDrawer" style="@(isDrawerOpen ? "display:block;" : "display:none;")"></div>
+    <div class="drawer @(isDrawerOpen ? "open" : "closed")">
+        <a href="/" @onclick="CloseDrawer">Home</a>
+        <a href="/resume" @onclick="CloseDrawer">Resume</a>
+        <a href="/projects" @onclick="CloseDrawer">Projects</a>
+        <a href="/experience" @onclick="CloseDrawer">Experience</a>
+        <a href="/contact" @onclick="CloseDrawer">Contact</a>
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+@code {
+    private bool isDrawerOpen = false;
+
+    private void ToggleDrawer() => isDrawerOpen = !isDrawerOpen;
+    private void CloseDrawer() => isDrawerOpen = false;
+}
