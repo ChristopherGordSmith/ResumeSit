@@ -105,6 +105,9 @@ a, .btn-link {
     border-radius: 0.7rem;
     box-shadow: 0 0 12px #00fff7, 0 0 24px #00fff7;
     transition: background 0.2s, box-shadow 0.2s;
+    position: relative;
+    right: 0;
+    top: 0;
 }
 .hamburger:hover {
     background: rgba(0,255,247,0.10);
@@ -215,4 +218,17 @@ a, .btn-link {
         gap: 0.7rem;
     }
 }
-@media
+@media (max-width: 768px) {
+    .nav-right a {
+        display: none !important;
+    }
+    .hamburger {
+        display: block !important;
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+    }
+    .nav-right {
+        gap: 0;
+    }
+}
