@@ -1,74 +1,107 @@
 @page "/experience"
 
+@inject IJSRuntime JS
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("experienceTimelineInit");
+        }
+    }
+}
+
 <PageTitle>Experience</PageTitle>
 
 <h1 class="experience-title">Experience</h1>
-<div class="timeline-container">
-    <!-- 2025 – Current -->
-    <div class="timeline-marker animated-marker">2025</div>
-    <div class="timeline-role neon-timeline-card">
-        <div class="role-header">
-            <span class="role-title">Software Developer Architect</span>
-            <span class="role-company">Interconnect-Wiring</span>
-            <span class="role-location">Fort Worth, TX</span>
-            <span class="role-dates">2025 – Current</span>
-        </div>
-        <ul class="role-achievements">
-            <li><span class="checkmark">?</span> Architected systems using UML diagrams and Visio flows</li>
-            <li><span class="checkmark">?</span> Established coding standards and design principles</li>
-            <li><span class="checkmark">?</span> Monitored and scheduled releases for web app updates</li>
-            <li><span class="checkmark">?</span> Ensured API integration, versioning, and compatibility</li>
-            <li><span class="checkmark">?</span> Mentored team through in-depth code reviews, refactoring complex logic and boosting performance</li>
-        </ul>
-    </div>
-    <div class="timeline-divider"></div>
 
-    <!-- 2023 – 2025 -->
-    <div class="timeline-marker animated-marker">2023</div>
-    <div class="timeline-role neon-timeline-card">
-        <div class="role-header">
-            <span class="role-title">Software Developer</span>
-            <span class="role-company">Interconnect-Wiring</span>
-            <span class="role-location">Fort Worth, TX</span>
-            <span class="role-dates">2023 – 2025</span>
+<div class="exp-split-layout">
+    <!-- Main Roles -->
+    <div class="exp-role-row" data-animate>
+        <div class="exp-role-left">
+            <ul class="exp-role-header-list">
+                <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer Architect</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-dates">2025 – Current</span></li>
+            </ul>
         </div>
-        <ul class="role-achievements">
-            <li><span class="checkmark">?</span> Full-Stack Web Development</li>
-            <li><span class="checkmark">?</span> Worked with ASP.NET Core 8 MVC, ASP.NET Core 8 Blazor, and SSMS</li>
-            <li><span class="checkmark">?</span> Developed workflows for manufacturing and administration</li>
-            <li><span class="checkmark">?</span> Designed and created Databases in SSMS</li>
-        </ul>
+        <div class="exp-role-right">
+            <ul class="exp-role-achievements">
+                <li><span class="achievement-icon">??</span>Architected systems using UML diagrams and Visio flows</li>
+                <li><span class="achievement-icon">???</span>Established coding standards and design principles</li>
+                <li><span class="achievement-icon">??</span>Monitored and scheduled releases for web app updates</li>
+                <li><span class="achievement-icon">??</span>Ensured API integration, versioning, and compatibility</li>
+                <li><span class="achievement-icon">??</span>Mentored team through in-depth code reviews, refactoring complex logic and boosting performance</li>
+            </ul>
+            <div class="exp-role-tags">
+                <span class="role-tag" data-tooltip=".NET 8, C#">.NET 8</span>
+                <span class="role-tag" data-tooltip="UML">UML</span>
+                <span class="role-tag" data-tooltip="API Design Patterns">API Design</span>
+                <span class="role-tag" data-tooltip="Team Leadership & Mentoring">Team Leadership</span>
+            </div>
+        </div>
     </div>
-    <div class="timeline-divider"></div>
-
-    <!-- 2022 – 2023 -->
-    <div class="timeline-marker animated-marker">2022</div>
-    <div class="timeline-role neon-timeline-card">
-        <div class="role-header">
-            <span class="role-title">Intern</span>
-            <span class="role-company">Ayoka Systems</span>
-            <span class="role-location">Arlington, TX</span>
-            <span class="role-dates">2022 – 2023</span>
+    <div class="exp-role-row" data-animate>
+        <div class="exp-role-left">
+            <ul class="exp-role-header-list">
+                <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
+                <li class="exp-role-header-bullet"><span class="exp-role-dates">2023 – 2025</span></li>
+            </ul>
         </div>
-        <ul class="role-achievements">
-            <li><span class="checkmark">?</span> Front-end/Back-end Web/App development</li>
-            <li><span class="checkmark">?</span> Worked with Vue 2, Ruby on Rails, and ASP.NET frameworks</li>
-        </ul>
+        <div class="exp-role-right">
+            <ul class="exp-role-achievements">
+                <li><span class="achievement-icon">??</span>Full-Stack Web Development</li>
+                <li><span class="achievement-icon">??</span>Worked with ASP.NET Core 8 MVC, ASP.NET Core 8 Blazor, and SSMS</li>
+                <li><span class="achievement-icon">??</span>Developed workflows for manufacturing and administration</li>
+                <li><span class="achievement-icon">???</span>Designed and created Databases in SSMS</li>
+            </ul>
+            <div class="exp-role-tags">
+                <span class="role-tag" data-tooltip="ASP.NET Core, C#">ASP.NET Core</span>
+                <span class="role-tag" data-tooltip="Blazor WebAssembly">Blazor</span>
+                <span class="role-tag" data-tooltip="Microsoft SQL Server">SQL Server</span>
+                <span class="role-tag" data-tooltip="SQL Server Management Studio">SSMS</span>
+            </div>
+        </div>
     </div>
-    <div class="timeline-divider"></div>
 
-    <!-- 2018 – 2019 -->
-    <div class="timeline-marker animated-marker">2018</div>
-    <div class="timeline-role neon-timeline-card">
-        <div class="role-header">
-            <span class="role-title">Intern</span>
-            <span class="role-company">MISD IT Department</span>
-            <span class="role-location">Mansfield, TX</span>
-            <span class="role-dates">2018 – 2019</span>
+    <!-- Internships Section -->
+    <div class="exp-internships-section" data-animate>
+        <div class="exp-internships-label">Internships (2018–2023)</div>
+        <div class="exp-intern-card">
+            <div class="exp-role-left">
+                <ul class="exp-role-header-list">
+                    <li class="exp-role-header-bullet"><span class="exp-role-title">Intern</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-company">Axoka Systems</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-dates">2022–2023</span></li>
+                </ul>
+            </div>
+            <div class="exp-role-right">
+                <ul class="exp-role-achievements">
+                    <li><span class="achievement-icon">???</span>Front-end/back-end web app development</li>
+                    <li><span class="achievement-icon">??</span>Worked with Vue 2, Ruby on Rails, and ASP.NET frameworks</li>
+                </ul>
+            </div>
         </div>
-        <ul class="role-achievements">
-            <li><span class="checkmark">?</span> Maintained and troubleshooted servers and desktops</li>
-            <li><span class="checkmark">?</span> Professional client communication</li>
-        </ul>
+        <div class="exp-intern-card">
+            <div class="exp-role-left">
+                <ul class="exp-role-header-list">
+                    <li class="exp-role-header-bullet"><span class="exp-role-title">Intern</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-company">MISD IT Department</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-location">Mansfield, TX</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-dates">2018–2019</span></li>
+                </ul>
+            </div>
+            <div class="exp-role-right">
+                <ul class="exp-role-achievements">
+                    <li><span class="achievement-icon">??</span>Troubleshooting on school sites and servers</li>
+                    <li><span class="achievement-icon">??</span>Professional client communication</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

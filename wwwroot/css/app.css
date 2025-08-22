@@ -814,7 +814,7 @@ body::before {
     }
 }
 
-/* === Experience Timeline Neon Styling === */
+/* === Experience Timeline Neon Styling (Enhanced) === */
 .experience-title {
     color: #00fff7;
     font-size: 2.1rem;
@@ -833,6 +833,14 @@ body::before {
     margin: 0 auto 3rem auto;
     position: relative;
 }
+.timeline-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
 .timeline-marker {
     color: #00fff7;
     font-size: 1.25rem;
@@ -846,19 +854,32 @@ body::before {
     z-index: 2;
     box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
     animation: marker-pulse 2.2s infinite alternate;
+    align-self: flex-start;
+    min-width: 70px;
+    text-align: center;
 }
 @keyframes marker-pulse {
     0% { box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7; }
     100% { box-shadow: 0 0 32px #00fff7, 0 0 64px #00fff7; }
 }
-.timeline-divider {
-    width: 4px;
-    height: 2.5rem;
+.timeline-connector {
+    width: 8px;
+    min-width: 8px;
     background: linear-gradient(180deg, #00fff7 0%, #0a0a23 100%);
-    border-radius: 2px;
-    margin: 0.2rem 0 0.2rem 0;
-    box-shadow: 0 0 12px #00fff7, 0 0 24px #00fff7;
-    opacity: 0.7;
+    border-radius: 4px;
+    margin: 0 1.2rem 0 1.2rem;
+    position: relative;
+    box-shadow: 0 0 18px #00fff7, 0 0 32px #00fff7;
+    animation: connector-pulse 2.5s infinite alternate;
+    transition: background 0.3s;
+}
+@keyframes connector-pulse {
+    0% { box-shadow: 0 0 18px #00fff7, 0 0 32px #00fff7; background: linear-gradient(180deg, #00fff7 0%, #0a0a23 100%); }
+    100% { box-shadow: 0 0 32px #00fff7, 0 0 64px #00fff7; background: linear-gradient(180deg, #00fff7 0%, #00fff799 100%); }
+}
+.timeline-role {
+    flex: 1 1 0;
+    min-width: 0;
 }
 .neon-timeline-card {
     background: rgba(10, 10, 35, 0.92);
@@ -873,10 +894,21 @@ body::before {
     align-items: flex-start;
     position: relative;
     transition: box-shadow 0.22s, transform 0.22s;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: box-shadow 0.22s, transform 0.22s, opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.neon-timeline-card.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 .neon-timeline-card:hover {
-    box-shadow: 0 0 32px #00fff7, 0 0 0 2.5px #00fff7, 0 0 64px #00fff7;
-    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 0 32px #00fff7, 0 0 0 2.5px #00fff7, 0 0 64px #00fff7, 0 0 16px #00fff7 inset;
+    animation: card-border-pulse 1.2s infinite alternate;
+}
+@keyframes card-border-pulse {
+    0% { box-shadow: 0 0 18px #00fff7, 0 0 0 2px #00fff7, inset 0 0 24px #00fff733; }
+    100% { box-shadow: 0 0 32px #00fff7, 0 0 0 4px #00fff7, 0 0 64px #00fff7, 0 0 24px #00fff7 inset; }
 }
 .role-header {
     display: flex;
@@ -927,24 +959,396 @@ body::before {
     align-items: flex-start;
     gap: 0.6rem;
 }
-.checkmark {
+.achievement-icon {
     color: #00fff7;
     font-size: 1.1em;
     text-shadow: 0 0 8px #00fff7;
     margin-right: 0.2rem;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
 }
-@media (max-width: 700px) {
-    .timeline-container {
-        max-width: 99vw;
-        padding: 0 0.2rem;
-    }
-    .neon-timeline-card {
-        max-width: 99vw;
-        padding: 1.2rem 0.7rem 1.2rem 0.7rem;
-    }
-    .role-header {
+.role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+}
+.role-tag {
+    background: rgba(0,255,247,0.13);
+    color: #00fff7;
+    border: 1.5px solid #00fff7;
+    border-radius: 0.7rem;
+    padding: 0.18rem 0.8rem;
+    font-size: 0.97rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 6px #00fff7;
+    margin-bottom: 0.2rem;
+    transition: background 0.18s, color 0.18s, box-shadow 0.22s;
+    position: relative;
+    cursor: pointer;
+}
+.role-tag:hover, .role-tag:focus {
+    background: #00fff7;
+    color: #0a0a23;
+    box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
+    animation: tag-pulse 1.2s infinite alternate;
+}
+@keyframes tag-pulse {
+    0% { box-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7; }
+    100% { box-shadow: 0 0 24px #00fff7, 0 0 48px #00fff7; }
+}
+.role-tag[data-tooltip]:hover::after, .role-tag[data-tooltip]:focus::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: 120%;
+    transform: translateX(-50%);
+    background: #0a0a23;
+    color: #00fff7;
+    border: 1.5px solid #00fff7;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 0 12px #00fff7;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: none;
+    text-shadow: 0 0 8px #00fff7;
+    animation: tooltip-fadein 0.22s;
+}
+@keyframes tooltip-fadein {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* === Experience Split Layout Neon Styling === */
+.exp-split-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+}
+.exp-role-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: rgba(10, 10, 35, 0.92);
+    border-radius: 1.2rem;
+    box-shadow: 0 0 18px #00fff7, 0 0 0 2px #00fff7, inset 0 0 24px #00fff733;
+    transition: box-shadow 0.22s, transform 0.22s, opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+}
+.exp-role-row.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.exp-role-row:hover {
+    box-shadow: 0 0 32px #00fff7, 0 0 0 2.5px #00fff7, 0 0 64px #00fff7, 0 0 16px #00fff7 inset;
+    animation: card-border-pulse 1.2s infinite alternate;
+}
+@keyframes card-border-pulse {
+    0% { box-shadow: 0 0 18px #00fff7, 0 0 0 2px #00fff7, inset 0 0 24px #00fff733; }
+    100% { box-shadow: 0 0 32px #00fff7, 0 0 0 4px #00fff7, 0 0 64px #00fff7, 0 0 24px #00fff7 inset; }
+}
+.exp-role-left {
+    flex: 0 0 240px;
+    min-width: 180px;
+    max-width: 260px;
+    padding: 2rem 1.2rem 1.5rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 2px solid #00fff7;
+    background: rgba(10, 10, 35, 0.98);
+    border-radius: 1.2rem 0 0 1.2rem;
+}
+.exp-role-title {
+    color: #00fff7;
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 10px #00fff7, 0 0 24px #00fff7;
+    margin-bottom: 0.5rem;
+}
+.exp-role-company {
+    color: #b2f7ff;
+    font-size: 1.08rem;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.3rem;
+}
+.exp-role-dates {
+    color: #00fff7;
+    font-size: 1.01rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+.exp-role-right {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.exp-role-achievements {
+    color: #e0f7fa;
+    font-size: 1.08rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin: 0 0 0.7rem 0;
+    padding: 0 0 0 1.2rem;
+    list-style: none;
+}
+.exp-role-achievements li {
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+.achievement-icon {
+    color: #00fff7;
+    font-size: 1.1em;
+    text-shadow: 0 0 8px #00fff7;
+    margin-right: 0.2rem;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+.exp-role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+}
+.role-tag {
+    background: rgba(0,255,247,0.13);
+    color: #00fff7;
+    border: 1.5px solid #00fff7;
+    border-radius: 0.7rem;
+    padding: 0.18rem 0.8rem;
+    font-size: 0.97rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 6px #00fff7;
+    margin-bottom: 0.2rem;
+    transition: background 0.18s, color 0.18s, box-shadow 0.22s;
+    position: relative;
+    cursor: pointer;
+}
+.role-tag:hover, .role-tag:focus {
+    background: #00fff7;
+    color: #0a0a23;
+    box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
+    animation: tag-pulse 1.2s infinite alternate;
+}
+@keyframes tag-pulse {
+    0% { box-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7; }
+    100% { box-shadow: 0 0 24px #00fff7, 0 0 48px #00fff7; }
+}
+.role-tag[data-tooltip]:hover::after, .role-tag[data-tooltip]:focus::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: 120%;
+    transform: translateX(-50%);
+    background: #0a0a23;
+    color: #00fff7;
+    border: 1.5px solid #00fff7;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 0 12px #00fff7;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: none;
+    text-shadow: 0 0 8px #00fff7;
+    animation: tooltip-fadein 0.22s;
+}
+@keyframes tooltip-fadein {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Internships Section Styling */
+.exp-internships-section {
+    margin-top: 2.5rem;
+    background: rgba(10, 10, 35, 0.7);
+    border-radius: 1.2rem;
+    box-shadow: 0 0 10px #00fff744, 0 0 0 1.5px #00fff744;
+    padding: 1.5rem 0 0.5rem 0;
+    filter: brightness(0.85) grayscale(0.15);
+}
+.exp-internships-label {
+    color: #00fff7;
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    margin-left: 2.2rem;
+    margin-bottom: 1.2rem;
+}
+.exp-intern-row {
+    background: rgba(10, 10, 35, 0.6);
+    box-shadow: 0 0 8px #00fff744, 0 0 0 1.5px #00fff744;
+    filter: brightness(0.92) grayscale(0.18);
+}
+
+.exp-intern-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: rgba(10, 10, 35, 0.7);
+    border-radius: 1.2rem;
+    box-shadow: 0 0 10px #00fff744, 0 0 0 1.5px #00fff744, inset 0 0 16px #00fff722;
+    margin: 1.2rem 1.2rem 1.2rem 1.2rem;
+    transition: box-shadow 0.22s, transform 0.22s, opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+}
+.exp-intern-card.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.exp-intern-card:hover {
+    box-shadow: 0 0 24px #00fff7, 0 0 0 2.5px #00fff7, 0 0 32px #00fff7, 0 0 8px #00fff7 inset;
+}
+.exp-intern-card .exp-role-left {
+    flex: 0 0 200px;
+    min-width: 140px;
+    max-width: 220px;
+    padding: 1.5rem 1.2rem 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 2px solid #00fff7;
+    background: rgba(10, 10, 35, 0.85);
+    border-radius: 1.2rem 0 0 1.2rem;
+}
+.exp-intern-card .exp-role-title {
+    color: #00fff7;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    margin-bottom: 0.3rem;
+}
+.exp-intern-card .exp-role-company {
+    color: #b2f7ff;
+    font-size: 1.01rem;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+}
+.exp-intern-card .exp-role-location {
+    color: #e0f7fa;
+    font-size: 0.98rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+}
+.exp-intern-card .exp-role-dates {
+    color: #00fff7;
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+.exp-intern-card .exp-role-right {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.exp-intern-card .exp-role-achievements {
+    color: #b2f7ff;
+    font-size: 1.01rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin: 0 0 0.2rem 0;
+    padding: 0 0 0 1.2rem;
+    list-style: none;
+}
+.exp-intern-card .exp-role-achievements li {
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .exp-intern-card {
         flex-direction: column;
-        gap: 0.2rem 0;
+        align-items: stretch;
+        margin: 1.2rem 0.2rem 1.2rem 0.2rem;
+    }
+    .exp-intern-card .exp-role-left, .exp-intern-card .exp-role-right {
+        padding: 1.2rem 1.2rem 0.7rem 1.2rem;
+        border-radius: 1.2rem 1.2rem 0 0;
+        border-right: none;
+        border-bottom: 2px solid #00fff7;
+        max-width: 100vw;
+    }
+    .exp-intern-card .exp-role-right {
+        border-radius: 0 0 1.2rem 1.2rem;
+        border-bottom: none;
+        padding-top: 0.7rem;
+    }
+}
+
+/* New bullet list styles for role headers */
+.exp-role-header-list {
+    list-style: disc inside;
+    margin: 0 0 0.7rem 0.2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+}
+.exp-role-header-bullet {
+    color: #00fff7;
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    margin: 0;
+    padding: 0 0 0 0.2rem;
+    display: flex;
+    align-items: center;
+}
+.exp-role-header-bullet .exp-role-title,
+.exp-role-header-bullet .exp-role-company,
+.exp-role-header-bullet .exp-role-location,
+.exp-role-header-bullet .exp-role-dates {
+    color: #00fff7;
+    font-size: 1.08rem;
+    font-weight: 600;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 900px) {
+    .exp-role-header-list {
+        font-size: 1.01rem;
+        gap: 0.12rem;
+    }
+    .exp-role-header-bullet .exp-role-title,
+    .exp-role-header-bullet .exp-role-company,
+    .exp-role-header-bullet .exp-role-location,
+    .exp-role-header-bullet .exp-role-dates {
+        font-size: 1.01rem;
     }
 }
