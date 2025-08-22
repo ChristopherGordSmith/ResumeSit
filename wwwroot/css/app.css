@@ -5,6 +5,18 @@ html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+
+body, .main-navbar-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #0a0a23;
+}
+
+.main-navbar-layout {
+    flex: 1 0 auto;
 }
 
 h1:focus {
@@ -33,12 +45,53 @@ a, .btn-link {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.content {
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #0a0a23;
+    border-bottom: 2px solid #00fff7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    box-shadow: 0 0 16px #00fff744;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    width: 100%;
+    min-height: 70vh;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
+}
+
+.content-container {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    background: #0a0a23;
+    border: 2px solid #00fff7;
+    box-shadow: 0 0 24px #00fff7;
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
     background: none;
+    padding: 0;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -73,53 +126,11 @@ a, .btn-link {
     }
 
 .blazor-error-boundary {
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA9NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDg2IDY2LjA1NDcgMjYzLjU3NiA8YjA0MzI4ZTssIGZpbGw9IiMwMDAwMDA7IiBzdHlsZT0iZmlsbDpsZWZ0Ij48L3A+PC9nPjwvcz5zdmc+PCVkZWZzPjxzdHlsZSB0eXBlPPx0bXBsMCI+LnRvcC1uYXYgeyBhbGw6IDAgMCAwIDEwJSB9PC90bXBsMCI+PHN0YXR5ID4KICA8cGF0aCBjbGltaXQ9InNjYWxlIDYiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0icGF0cyIgZmlsbC1ydWxlPSJldmVub2dkIi8+CiAgPHBhdGggY2xpcGZpbGw9InVybChzY2FsZTYpIiBkPSJNMTg3LjEzNywxMS4wODYgQzE5LjYzMiw3LjYzMjIgMTMsNyA1LjU1Miw2LjM1NzggOC4zMTYzLDQgMTQuMzA2LTE4L?IAggY2xpcGU9InVybCgjaGFtbXVyZ2lwXzZ4N20pIiBzdHlsZT0iZmxpbW1hdGNoKCdzdHlsZScsIHN0eWxlQnJlYWtKZXcvMy4yOTUsICcxLjUnLCAidGFydCcgKTsiIC8+CiAgPHBh
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA9NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDg2IDY2LjA1NDcgMjYzLjU3NiA8YjA0MzI4ZTssIGZpbGw9IiMwMDAwMDA7IiBzdHlsZT0iZmlsbDpsZWZ0Ij48L3A+PC9nPjwvcz5zdmc+PCVkZWZzPjxzdHlsZSB0eXBlPPx0bXBsMCI+LnRvcC1uYXYgeyBhbGw6IDAgMCAwIDEwJSB9PC90bXBsMCI+PHN0YXR5ID4KICA8cGF0aCBjbGltaXQ9InNjYWxlIDYiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0icGF0cyIgZmlsbC1ydWxlPSJldmVub2dkIi8+CiAgPHBhdGggY2xpcGZpbGw9InVybChzY2FsZTYpIiBkPSJNMTg3LjEzNywxMS4wODYgQzE5LjYzMiw3LjYzMjIgMTMsNyA1LjU1Miw2LjM1NzggOC4zMTYzLDQgMTQuMzA2LTE4L?IAggY2xpcGU9InVybCgjaGFtbXVyZ2lwXzZ4N20pIiBzdHlsZT0iZmxpbF
+
+
 
 /* ...existing styles... */
-
-.main-navbar-layout {
-    min-height: 100vh;
-    background: #0a0a23;
-    color: #e0f7fa;
-    display: flex;
-    flex-direction: column;
-}
-
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #0a0a23;
-    border-bottom: 2px solid #00fff7;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1001;
-    box-shadow: 0 0 16px #00fff744;
-}
-
-.main-content {
-    flex: 1 0 auto;
-    width: 100%;
-    min-height: 70vh;
-    background: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 5.5rem;
-    padding-bottom: 2rem;
-}
-
-.content {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    background: none;
-}
 
 .nav-left {
     font-size: 1.5rem;
@@ -234,13 +245,14 @@ a, .btn-link {
     text-shadow: 0 0 8px #00fff7;
     letter-spacing: 0.04em;
     flex-shrink: 0;
+    margin-top: auto;
 }
 
 @media (max-width: 900px) {
     .main-content {
         padding-top: 4.5rem;
     }
-    .content {
+    .content-container {
         padding: 1.2rem 0.5rem 1rem 0.5rem;
     }
 }
@@ -256,5 +268,10 @@ a, .btn-link {
     }
     .main-content {
         padding-top: 4.2rem;
+    }
+    .content-container {
+        max-width: 100%;
+        border-radius: 0.7rem;
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
     }
 }
