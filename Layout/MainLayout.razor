@@ -1,38 +1,38 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager NavManager
 
-<div class="main-navbar-layout" style="background-color:#0a0a23; color:white;">
-    <nav class="top-nav" style="position:fixed; top:0; width:100%; background-color:#0a0a23; z-index:1000;">
-        <div class="nav-left">ResumeSite</div>
+<div class="main-navbar-layout">
+    <nav class="top-nav">
+        <div class="nav-left nav-brand">Christopher Smith</div>
         <div class="nav-right">
-            <a href="/" style="color:cyan;">Home</a>
-            <a href="/resume" style="color:cyan;">Resume</a>
-            <a href="/projects" style="color:cyan;">Projects</a>
-            <a href="/experience" style="color:cyan;">Experience</a>
-            <a href="/contact" style="color:cyan;">Contact</a>
+            <a href="/">Home</a>
+            <a href="/resume">Resume</a>
+            <a href="/projects">Projects</a>
+            <a href="/experience">Experience</a>
+            <a href="/contact">Contact</a>
             <button class="hamburger" @onclick="ToggleDrawer">☰</button>
         </div>
     </nav>
 
-    <div class="backdrop" @onclick="CloseDrawer" style="@(isDrawerOpen ? "display:block;" : "display:none;")"></div>
-    <div class="drawer @(isDrawerOpen ? "open" : "closed")" style="background-color:#0a0a23;">
-        <a href="/" @onclick="CloseDrawer" style="color:cyan;">Home</a>
-        <a href="/resume" @onclick="CloseDrawer" style="color:cyan;">Resume</a>
-        <a href="/projects" @onclick="CloseDrawer" style="color:cyan;">Projects</a>
-        <a href="/experience" @onclick="CloseDrawer" style="color:cyan;">Experience</a>
-        <a href="/contact" @onclick="CloseDrawer" style="color:cyan;">Contact</a>
+    <div class="backdrop @(isDrawerOpen ? "open" : "")" @onclick="CloseDrawer"></div>
+    <div class="drawer drawer-slide @(isDrawerOpen ? "open" : "closed")">
+        <a href="/" @onclick="CloseDrawer">Home</a>
+        <a href="/resume" @onclick="CloseDrawer">Resume</a>
+        <a href="/projects" @onclick="CloseDrawer">Projects</a>
+        <a href="/experience" @onclick="CloseDrawer">Experience</a>
+        <a href="/contact" @onclick="CloseDrawer">Contact</a>
     </div>
 
-    <main class="main-content" style="padding-top:60px; padding-bottom:60px;">
-        <div class="content-container" style="max-width:800px; margin:auto; padding:20px; border: 2px solid cyan; border-radius:10px; glow-effect; background-color:#111;">
+    <main class="main-content">
+        <div class="content-container">
             <article class="content px-4">
                 @Body
             </article>
         </div>
     </main>
 
-    <footer class="footer-neon" style="background-color:#0a0a23; neon-effect">
-        <span>&copy; @DateTime.Now.Year Chris Doe &mdash; ResumeSite</span>
+    <footer class="footer-neon">
+        <span>&copy; @DateTime.Now.Year Christopher Smith &mdash; Portfolio</span>
     </footer>
 </div>
 
