@@ -12,8 +12,13 @@ html, body {
 body, .main-navbar-layout {
     display: flex;
     flex-direction: column;
-    background: #0a0a23;
     min-height: 100vh;
+    /* Neon animated gradient background */
+    background: linear-gradient(120deg, #0a0a23 0%, #111133 100%);
+    animation: neon-bg-move 20s ease-in-out infinite alternate;
+    background-size: 200% 200%;
+    /* Neon grid overlay */
+    position: relative;
 }
 
 .main-navbar-layout {
@@ -160,6 +165,233 @@ a, .btn-link {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* === Profile Styles === */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    animation: hero-fadein-up 0.85s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    /* Remove glowing panel styles */
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: visible;
+}
+
+.profile-section::before {
+    content: none;
+}
+
+@keyframes hero-fadein-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 160px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    object-fit: cover;
+    background: #111133;
+}
+
+.hero-panel {
+    background: linear-gradient(135deg, #10102a 60%, #111133 100%);
+    border-radius: 1.7rem;
+    box-shadow: 0 0 24px #00fff7, 0 0 0 2px #00fff7;
+    padding: 2.5rem 2.5rem 2.2rem 2.5rem;
+    margin: 2.5rem auto 2.5rem auto;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1.7rem;
+    pointer-events: none;
+    box-shadow: inset 0 0 32px #00fff733, inset 0 2px 32px #00fff722;
+    background: linear-gradient(180deg, rgba(0,255,247,0.04) 0%, rgba(10,10,35,0.12) 100%);
+    z-index: 0;
+}
+
+.hero-panel {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.profile-name {
+    font-size: 2.5rem;
+    color: #00fff7;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 12px #00fff7, 0 0 24px #00fff7;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 1.3rem;
+    color: #e0f7fa;
+    font-weight: 300;
+    margin-bottom: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+.profile-bio {
+    color: #b2f7ff;
+    font-size: 1.08rem;
+    font-weight: 300;
+    margin-bottom: 1.7rem;
+    text-align: center;
+    max-width: 340px;
+    text-shadow: 0 0 6px #00fff744;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+.profile-btns-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+}
+
+.profile-btns,
+.hero-btns-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.profile-btn {
+    min-width: 160px;
+    margin-bottom: 1rem;
+    flex: 1 1 160px;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.7rem;
+    background: #00fff7;
+    color: #0a0a23;
+    box-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7, inset 0 2px 12px #00fff799;
+    transition: background 0.22s, box-shadow 0.22s, color 0.22s, filter 0.22s;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-btn:last-child {
+    margin-bottom: 0;
+}
+
+.profile-btn:hover {
+    background: #0ff;
+    color: #0a0a23;
+    box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7, 0 0 8px #00fff7 inset, 0 2px 16px #00fff799 inset;
+    filter: brightness(1.08) saturate(1.2);
+}
+
+
+/* Glowing scroll cue arrow */
+.hero-scroll-cue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem auto 0 auto;
+    width: 100%;
+    pointer-events: none;
+}
+
+.hero-scroll-arrow {
+    font-size: 2.2rem;
+    color: #00fff7;
+    text-shadow: 0 0 8px #00fff7, 0 0 24px #00fff7;
+    animation: hero-bounce 1.5s infinite cubic-bezier(0.4,0,0.2,1);
+    opacity: 0.85;
+}
+
+@keyframes hero-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(18px); }
+}
+
+@media (max-width: 600px) {
+    .profile-section {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        max-width: 98vw;
+    }
+    .profile-img {
+        max-width: 110px;
+        margin-bottom: 1rem;
+    }
+    .profile-name {
+        font-size: 1.5rem;
+    }
+    .profile-title {
+        font-size: 1.05rem;
+    }
+    .profile-bio {
+        font-size: 0.98rem;
+        margin-bottom: 1.1rem;
+        line-height: 1.5;
+    }
+    .profile-btns {
+        gap: 0.6rem 0.5rem;
+    }
+    .profile-btn {
+        min-width: 110px;
+        flex: 1 1 110px;
+        font-size: 0.95rem;
+        padding: 0.6rem 0.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-btns-container {
+        gap: 0.6rem 0.5rem;
+        max-width: 98vw;
+    }
+    .profile-btn {
+        min-width: 100px;
+        flex: 1 1 100px;
+    }
+    .hero-btn-divider {
+        height: 1.5rem;
+        margin: 0 0.4rem;
+    }
 }
 
 /* === Responsive Layout === */
@@ -309,4 +541,43 @@ a, .btn-link {
 
 #blazor-error-ui {
     display: none !important;
+}
+
+@keyframes neon-bg-move {
+    0% {
+        background-position: 0% 50%;
+        background: linear-gradient(120deg, #0a0a23 0%, #111133 100%);
+    }
+    50% {
+        background-position: 100% 50%;
+        background: linear-gradient(120deg, #111133 0%, #0a0a23 100%);
+    }
+    100% {
+        background-position: 0% 50%;
+        background: linear-gradient(120deg, #0a0a23 0%, #111133 100%);
+    }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 28px, #00fff7 30px, transparent 32px),
+        repeating-linear-gradient(90deg, transparent, transparent 28px, #00fff7 30px, transparent 32px);
+    background-size: 32px 32px;
+    opacity: 0.55;
+    filter: blur(0px) brightness(1.5) drop-shadow(0 0 12px #00fff7);
+    animation: neon-grid-drift 8s linear infinite;
+    transition: opacity 0.4s;
+}
+
+@keyframes neon-grid-drift {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 64px 32px, 32px 64px; }
 }
