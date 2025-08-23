@@ -1,7 +1,63 @@
 @page "/contact"
 
+@using System.ComponentModel.DataAnnotations
+
 <PageTitle>Contact</PageTitle>
 
-<h1>Contact</h1>
+<div class="contact-center">
+    <h1 class="neon-header">Contact Me</h1>
+    <EditForm class="contact-form" Model="contactModel" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <InputText id="name" class="form-control neon-input" @bind-Value="contactModel.Name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <InputText id="email" class="form-control neon-input" @bind-Value="contactModel.Email" />
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <InputTextArea id="message" class="form-control neon-input" @bind-Value="contactModel.Message" />
+        </div>
+        <button type="submit" class="neon-button">Submit</button>
+    </EditForm>
+    @if (showSuccess)
+    {
+        <div class="neon-success">Your email client has opened. Thank you for reaching out!</div>
+    }
+    <div class="contact-socials">
+        <a href="https://www.linkedin.com/in/christophergsmith3975/" target="_blank" rel="noopener" class="neon-social-btn" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+</div>
 
-<!-- Contact form or info will be rendered here using a Razor component -->
+@code {
+    private ContactModel contactModel = new();
+    private bool showSuccess = false;
+
+    private async Task HandleSubmit()
+    {
+        showSuccess = false;
+        var subject = Uri.EscapeDataString("Portfolio Contact");
+        var body = Uri.EscapeDataString($"Name: {contactModel.Name}\nEmail: {contactModel.Email}\n\nMessage:\n{contactModel.Message}");
+        var mailto = $"mailto:YOUR_EMAIL@example.com?subject={subject}&body={body}";
+        await JS.InvokeVoidAsync("open", mailto, "_self");
+        showSuccess = true;
+    }
+
+    [Inject] IJSRuntime JS { get; set; }
+
+    public class ContactModel
+    {
+        [Required(ErrorMessage = "Name is required.")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Message is required.")]
+        public string Message { get; set; }
+    }
+}

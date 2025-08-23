@@ -1418,3 +1418,164 @@ body::before {
         flex-direction: column;
     }
 }
+
+/* === Neon Contact Page Styles === */
+.contact-container {
+    max-width: 420px;
+    margin: 3rem auto 2.5rem auto;
+    background: rgba(10, 10, 35, 0.96);
+    border-radius: 1.5rem;
+    box-shadow: 0 0 24px #00fff7, 0 0 0 2.5px #00fff7, 0 0 48px #00fff744;
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.contact-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 70vh;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
+}
+
+.neon-header {
+    color: #00fff7;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
+    margin-bottom: 2.2rem;
+    text-align: center;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label {
+    color: #00fff7;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 8px #00fff7;
+}
+
+.neon-input {
+    background: #0a0a23;
+    border: 2px solid #00fff7;
+    border-radius: 0.7rem;
+    color: #ffffff;
+    caret-color: #00ffff;
+    box-shadow: 0 0 8px #00fff7, 0 0 16px #00fff744;
+    padding: 0.7rem 1rem;
+    font-size: 1.08rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    transition: box-shadow 0.18s, border-color 0.18s;
+}
+
+.neon-input:focus {
+    outline: none;
+    border-color: #0ff;
+    box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
+    background: #111133;
+    color: #ffffff;
+    caret-color: #00ffff;
+}
+
+.neon-input::placeholder {
+    color: #8888ff;
+    opacity: 1;
+    text-shadow: 0 0 6px #8888ff44;
+}
+
+.neon-button {
+    background: #00fff7;
+    color: #0a0a23;
+    border: none;
+    border-radius: 0.7rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 0.85rem 2.2rem;
+    margin-top: 0.7rem;
+    box-shadow: 0 0 12px #00fff7, 0 0 24px #00fff7;
+    text-shadow: 0 0 8px #00fff7;
+    cursor: pointer;
+    transition: box-shadow 0.18s, background 0.18s, color 0.18s, filter 0.18s;
+    filter: brightness(1.08) saturate(1.2);
+}
+
+.neon-button:hover, .neon-button:focus {
+    background: #0ff;
+    color: #0a0a23;
+    box-shadow: 0 0 24px #00fff7, 0 0 48px #00fff7;
+    filter: brightness(1.15) saturate(1.3);
+}
+
+.neon-success {
+    color: #00fff7;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+    text-align: center;
+    animation: neon-success-fadein 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes neon-success-fadein {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .contact-center {
+        padding-top: 2.5rem;
+    }
+    .contact-form {
+        max-width: 98vw;
+        padding: 0 0.5rem;
+    }
+}
+
+/* LinkedIn Icon Button Styles */
+.neon-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #0a0a23;
+    border: 2.5px solid #00fff7;
+    box-shadow: 0 0 16px #00fff7, 0 0 32px #00fff7;
+    color: #00fff7;
+    font-size: 2.7rem;
+    transition: box-shadow 0.18s, background 0.18s, color 0.18s, filter 0.18s;
+    text-shadow: 0 0 12px #00fff7, 0 0 24px #00fff7;
+    cursor: pointer;
+}
+
+.neon-social-btn:hover, .neon-social-btn:focus {
+    background: #00fff7;
+    color: #0a0a23;
+    box-shadow: 0 0 32px #00fff7, 0 0 64px #00fff7;
+    filter: brightness(1.15) saturate(1.3);
+}
+
+@media (max-width: 600px) {
+    .neon-social-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 2rem;
+    }
+}
