@@ -361,3 +361,18 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Blazor WebAssembly deployment artifacts
+publish/
+.nojekyll
+
+# AI tooling
+CopilotIndices/
+
+# Locked or problematic files
+*.vsixdb
+*.lock.json
+*.db
+
+# GitHub Pages cleanup
+gh-pages-temp/
