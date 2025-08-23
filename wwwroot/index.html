@@ -5,7 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ResumeSit</title>
-    <base href="/" />
+    <script>
+        const isLocalhost = location.hostname === "localhost";
+        const base = document.createElement("base");
+        base.href = isLocalhost ? "/" : "/ResumeSit/";
+        document.head.appendChild(base);
+    </script>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -14,7 +19,7 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        crossorigin="anonymous" />
+          crossorigin="anonymous" />
 </head>
 
 <body>
