@@ -841,6 +841,32 @@ body::before {
     position: relative;
     margin-bottom: 0.5rem;
 }
+.timeline-row.timeline-align {
+    align-items: flex-start;
+    min-height: 0;
+}
+@media (min-width: 701px) {
+    .timeline-row.timeline-align {
+        align-items: stretch;
+        min-height: 220px;
+    }
+    .timeline-marker {
+        margin-top: 0 !important;
+        align-self: flex-start;
+    }
+    .timeline-connector {
+        margin-top: 0 !important;
+        align-self: stretch;
+    }
+    .neon-timeline-card {
+        margin-top: 0 !important;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+    }
+}
 .timeline-marker {
     color: #00fff7;
     font-size: 1.25rem;
@@ -893,18 +919,15 @@ body::before {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    transition: box-shadow 0.22s, transform 0.22s;
+    transition: box-shadow 0.12s, transform 0.12s, opacity 0.4s cubic-bezier(0.4,0,0.2,1);
     opacity: 0;
     transform: translateY(40px) scale(0.98);
-    transition: box-shadow 0.22s, transform 0.22s, opacity 0.7s cubic-bezier(0.4,0,0.2,1);
-}
-.neon-timeline-card.in-view {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transition: box-shadow 0.12s, transform 0.12s, opacity 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 .neon-timeline-card:hover {
     box-shadow: 0 0 32px #00fff7, 0 0 0 2.5px #00fff7, 0 0 64px #00fff7, 0 0 16px #00fff7 inset;
-    animation: card-border-pulse 1.2s infinite alternate;
+    animation: none;
+    transform: translateY(-2px) scale(1.01);
 }
 @keyframes card-border-pulse {
     0% { box-shadow: 0 0 18px #00fff7, 0 0 0 2px #00fff7, inset 0 0 24px #00fff733; }
@@ -1350,5 +1373,48 @@ body::before {
     .exp-role-header-bullet .exp-role-location,
     .exp-role-header-bullet .exp-role-dates {
         font-size: 1.01rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .timeline-container {
+        max-width: 99vw;
+        padding: 0 0.2rem;
+    }
+    .timeline-row {
+        flex-direction: column;
+        align-items: stretch !important;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+    .timeline-marker {
+        min-width: 0;
+        width: fit-content;
+        font-size: 1.08rem;
+        padding: 0.2rem 1.1rem;
+        margin: 0 auto 0.7rem auto !important;
+        display: block;
+        position: static;
+        order: 0;
+    }
+    .timeline-connector {
+        width: 90%;
+        min-width: 0;
+        height: 6px;
+        margin-bottom: 1.1rem !important;
+        order: 2;
+        display: none;
+    }
+    .neon-timeline-card {
+        max-width: 99vw;
+        width: 100%;
+        margin: 0 auto 0 auto !important;
+        padding: 1.2rem 0.7rem 1.1rem 0.7rem;
+        font-size: 0.98rem;
+        order: 1;
+    }
+    .timeline-row {
+        display: flex;
+        flex-direction: column;
     }
 }

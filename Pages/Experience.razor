@@ -1,33 +1,22 @@
 @page "/experience"
 
-@inject IJSRuntime JS
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("experienceTimelineInit");
-        }
-    }
-}
-
 <PageTitle>Experience</PageTitle>
 
 <h1 class="experience-title">Experience</h1>
 
-<div class="exp-split-layout">
+<div class="project-cards">
     <!-- Main Roles -->
-    <div class="exp-role-row" data-animate>
-        <div class="exp-role-left">
-            <ul class="exp-role-header-list">
-                <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer Architect</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-dates">2025 – Current</span></li>
-            </ul>
-        </div>
-        <div class="exp-role-right">
+    <div class="project-card neon-card">
+        <div class="project-card-header">Software Developer Architect</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                <ul class="exp-role-header-list">
+                    <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer Architect</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-dates">2025 – Current</span></li>
+                </ul>
+            </div>
             <ul class="exp-role-achievements">
                 <li><span class="achievement-icon">??</span>Architected systems using UML diagrams and Visio flows</li>
                 <li><span class="achievement-icon">???</span>Established coding standards and design principles</li>
@@ -43,16 +32,17 @@
             </div>
         </div>
     </div>
-    <div class="exp-role-row" data-animate>
-        <div class="exp-role-left">
-            <ul class="exp-role-header-list">
-                <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
-                <li class="exp-role-header-bullet"><span class="exp-role-dates">2023 – 2025</span></li>
-            </ul>
-        </div>
-        <div class="exp-role-right">
+    <div class="project-card neon-card">
+        <div class="project-card-header">Software Developer</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
+                <ul class="exp-role-header-list">
+                    <li class="exp-role-header-bullet"><span class="exp-role-title">Software Developer</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-company">Interconnect-Wiring</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-location">Fort Worth, TX</span></li>
+                    <li class="exp-role-header-bullet"><span class="exp-role-dates">2023 – 2025</span></li>
+                </ul>
+            </div>
             <ul class="exp-role-achievements">
                 <li><span class="achievement-icon">??</span>Full-Stack Web Development</li>
                 <li><span class="achievement-icon">??</span>Worked with ASP.NET Core 8 MVC, ASP.NET Core 8 Blazor, and SSMS</li>
@@ -67,12 +57,11 @@
             </div>
         </div>
     </div>
-
     <!-- Internships Section -->
-    <div class="exp-internships-section" data-animate>
-        <div class="exp-internships-label">Internships (2018–2023)</div>
-        <div class="exp-intern-card">
-            <div class="exp-role-left">
+    <div class="project-card neon-card">
+        <div class="project-card-header">Internship: Axoka Systems</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
                 <ul class="exp-role-header-list">
                     <li class="exp-role-header-bullet"><span class="exp-role-title">Intern</span></li>
                     <li class="exp-role-header-bullet"><span class="exp-role-company">Axoka Systems</span></li>
@@ -80,15 +69,16 @@
                     <li class="exp-role-header-bullet"><span class="exp-role-dates">2022–2023</span></li>
                 </ul>
             </div>
-            <div class="exp-role-right">
-                <ul class="exp-role-achievements">
-                    <li><span class="achievement-icon">???</span>Front-end/back-end web app development</li>
-                    <li><span class="achievement-icon">??</span>Worked with Vue 2, Ruby on Rails, and ASP.NET frameworks</li>
-                </ul>
-            </div>
+            <ul class="exp-role-achievements">
+                <li><span class="achievement-icon">???</span>Front-end/back-end web app development</li>
+                <li><span class="achievement-icon">??</span>Worked with Vue 2, Ruby on Rails, and ASP.NET frameworks</li>
+            </ul>
         </div>
-        <div class="exp-intern-card">
-            <div class="exp-role-left">
+    </div>
+    <div class="project-card neon-card">
+        <div class="project-card-header">Internship: MISD IT Department</div>
+        <div class="project-card-body">
+            <div class="project-card-desc">
                 <ul class="exp-role-header-list">
                     <li class="exp-role-header-bullet"><span class="exp-role-title">Intern</span></li>
                     <li class="exp-role-header-bullet"><span class="exp-role-company">MISD IT Department</span></li>
@@ -96,12 +86,10 @@
                     <li class="exp-role-header-bullet"><span class="exp-role-dates">2018–2019</span></li>
                 </ul>
             </div>
-            <div class="exp-role-right">
-                <ul class="exp-role-achievements">
-                    <li><span class="achievement-icon">??</span>Troubleshooting on school sites and servers</li>
-                    <li><span class="achievement-icon">??</span>Professional client communication</li>
-                </ul>
-            </div>
+            <ul class="exp-role-achievements">
+                <li><span class="achievement-icon">??</span>Troubleshooting on school sites and servers</li>
+                <li><span class="achievement-icon">??</span>Professional client communication</li>
+            </ul>
         </div>
     </div>
 </div>
