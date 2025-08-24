@@ -1,5 +1,9 @@
 # ResumeSit
 
+[![Deploy Blazor WebAssembly to GitHub Pages](https://github.com/ChristopherGordSmith/ResumeSit/actions/workflows/deploy.yml/badge.svg)](https://github.com/ChristopherGordSmith/ResumeSit/actions/workflows/deploy.yml)
+
+Live site: [https://ChristopherGordSmith.github.io/ResumeSit/](https://ChristopherGordSmith.github.io/ResumeSit/)
+
 A personal resume website built with **Blazor WebAssembly**. This project showcases your professional experience, projects, and contact information in a modern, visually striking format.
 
 ## Project Overview
